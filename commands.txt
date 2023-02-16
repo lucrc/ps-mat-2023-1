@@ -1,2 +1,6 @@
-//Criar models de tabela
-npx sequelize-cli migration:generate - -name user - - attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
+// Gerar model + migration
+npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
+
+
+//Criar trabela no banco de dados:  
+npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
