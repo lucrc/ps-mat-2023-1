@@ -1,0 +1,2 @@
+//Criar models de tabela
+npx sequelize-cli migration:generate - -name user - - attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
