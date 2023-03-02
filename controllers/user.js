@@ -1,4 +1,5 @@
 //Importar o model correspondente ao controller
+const { ConnectionTimedOutError } = require('sequelize')
 const { User} = require('../models')
 
 const controller = {} // objeto vazio 
@@ -48,7 +49,7 @@ controller.retrieveOne = async(req, res) => {
         console.error(error)
     }
 }
-// controller.update = async (req, res) => {
+/*/ controller.update = async (req, res) => {
 //     try{
 //         const response = await User.update(
 //             req.body,
@@ -58,9 +59,21 @@ controller.retrieveOne = async(req, res) => {
 //         //response retorna um vetor. O primeiro elemento
 //         //do vetor indica quantos registros foram afetados
 //         // pelo update
-//         if(response[0])
+//         if(response[0]){
+            HTTP 204: No Content
+            res.status(204).end()
+            }
+            else { //Não encontrou o registro para atualizar
+                //HTTP 404: Not found
+                res.status(404).end()
+
+            }
+        }
+        catch(error){
+            console.error(error)
+        }
 //     }
-// }
+// */
 controller.delete = async(req, res) => {
    try{
     const response = await User.destroy(
