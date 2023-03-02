@@ -48,4 +48,37 @@ controller.retrieveOne = async(req, res) => {
         console.error(error)
     }
 }
+// controller.update = async (req, res) => {
+//     try{
+//         const response = await User.update(
+//             req.body,
+//             {where: {id: req.params.id}}
+//         )
+
+//         //response retorna um vetor. O primeiro elemento
+//         //do vetor indica quantos registros foram afetados
+//         // pelo update
+//         if(response[0])
+//     }
+// }
+controller.delete = async(req, res) => {
+   try{
+    const response = await User.destroy(
+        {where: {id:req.params.id} }
+    )
+    if(response){ // Encontrou e excluiu
+        //HTTP 204: No content
+        res.status(204).end()
+
+    }
+    else {      //Não encontrou e não excluiu
+        //HTTP 404: Not found
+        res.req.status(404).end()
+        
+    }
+   }
+   catch(error){
+    console.error(error)
+   }
+}
 module.exports = controller
