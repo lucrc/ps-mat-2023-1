@@ -10,3 +10,9 @@ npx sequelize-cli model:generate --name Channel --attributes id:integer,descript
 
 //Criar tabela no banco de dados:  
 npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
+
+// Gerar model + migration (Tabela payment_methods)
+npx sequelize-cli model:generate --name PaymentMethod --attributes description:string,operator_fee:decimal
+
+//Criar tabela no banco de dados:  
+npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
