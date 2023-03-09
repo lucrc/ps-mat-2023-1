@@ -49,19 +49,19 @@ controller.retrieveOne = async(req, res) => {
         console.error(error)
     }
 }
-/*/ controller.update = async (req, res) => {
-//     try{
-//         const response = await User.update(
-//             req.body,
-//             {where: {id: req.params.id}}
-//         )
+controller.update = async (req, res) => {
+    try{
+        const response = await User.update(
+            req.body,
+            {where: {id: req.params.id}}
+        )
 
-//         //response retorna um vetor. O primeiro elemento
-//         //do vetor indica quantos registros foram afetados
-//         // pelo update
-//         if(response[0]){
-            HTTP 204: No Content
-            res.status(204).end()
+        //response retorna um vetor. O primeiro elemento
+        //do vetor indica quantos registros foram afetados
+        // pelo update
+        if(response[0]){
+            // HTTP 204: No Content
+            // res.status(204).end()
             }
             else { //Não encontrou o registro para atualizar
                 //HTTP 404: Not found
@@ -72,8 +72,8 @@ controller.retrieveOne = async(req, res) => {
         catch(error){
             console.error(error)
         }
-//     }
-// */
+    }
+ 
 controller.delete = async(req, res) => {
    try{
     const response = await User.destroy(

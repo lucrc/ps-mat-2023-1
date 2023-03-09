@@ -51,7 +51,7 @@ controller.retrieveOne = async(req, res) => {
 }
  controller.update = async (req, res) => {
     try{
-        const response = await User.update(
+        const response = await PaymentMethod.update(
             req.body,
             {where: {id: req.params.id}}
         )

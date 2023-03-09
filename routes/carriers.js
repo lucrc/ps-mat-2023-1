@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/payment_method')
+const controller = require('../controllers/carrier')
 router.post('/', controller.create)
 router.get('/', controller.retrieve)
 router.get('/:id', controller.retrieveOne)

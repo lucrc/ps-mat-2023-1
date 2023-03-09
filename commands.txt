@@ -16,3 +16,9 @@ npx sequelize-cli model:generate --name PaymentMethod --attributes description:s
 
 //Criar tabela no banco de dados:  
 npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
+
+// Gerar model + migration (Tabela carrier)
+npx sequelize-cli model:generate --name Carrier --attributes name:string
+
+/ Gerar model + migration (Tabela shipment_priority)
+npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string

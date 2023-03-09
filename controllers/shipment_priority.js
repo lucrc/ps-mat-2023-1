@@ -1,6 +1,6 @@
 //Importar o model correspondente ao controller
 const { ConnectionTimedOutError } = require('sequelize')
-const { Channel} = require('../models')
+const { ShipmentPriority} = require('../models')
 
 const controller = {} // objeto vazio 
 
@@ -15,7 +15,7 @@ const controller = {} // objeto vazio
 
 controller.create = async(req, res) => {
     try{
-        await Channel.create(req.body)
+        await ShipmentPriority.create(req.body)
         //HTTP 201: Created
         res.status(201).end()
     }
@@ -26,7 +26,7 @@ controller.create = async(req, res) => {
 
 controller.retrieve = async(req, res) => {
     try{
-        const data = await Channel.findAll()
+        const data = await ShipmentPriority.findAll()
         //HTTP 200: OK (implícito)
         res.send(data)
 
@@ -37,7 +37,7 @@ controller.retrieve = async(req, res) => {
 }
 controller.retrieveOne = async(req, res) => {
     try{
-        const data = await Channel.findByPk(req.params.id)
+        const data = await ShipmentPriority.findByPk(req.params.id)
         //HTTP 200: OK (implícito)
         if (data) res.send(data)
         
@@ -51,7 +51,7 @@ controller.retrieveOne = async(req, res) => {
 }
  controller.update = async (req, res) => {
     try{
-        const response = await Channel.update(
+        const response = await ShipmentPriority.update(
             req.body,
             {where: {id: req.params.id}}
         )
@@ -76,7 +76,7 @@ controller.retrieveOne = async(req, res) => {
 
 controller.delete = async(req, res) => {
    try{
-    const response = await Channel.destroy(
+    const response = await ShipmentPriority.destroy(
         {where: {id:req.params.id} }
     )
     if(response){ // Encontrou e excluiu
