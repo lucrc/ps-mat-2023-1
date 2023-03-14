@@ -1,3 +1,19 @@
+lista de tabelas
+- User --> ok
+- city --> ok
+- channel --> ok
+- carrier --> ok
+- payment_method --> ok
+- shipment_priority --> ok
+- order_status --> ok
+- customer
+- customer_tag
+- order_tag
+- order
+- tag 
+- order_rel_status
+
+
 // Gerar model + migration (Tabela usuários)
 npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
 
@@ -20,5 +36,14 @@ npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
 // Gerar model + migration (Tabela carrier)
 npx sequelize-cli model:generate --name Carrier --attributes name:string
 
-/ Gerar model + migration (Tabela shipment_priority)
+// Gerar model + migration (Tabela shipment_priority)
 npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string
+
+// Gerar model + migration (Tabela city)
+npx sequelize-cli model:generate --name City --attributes name:string,state:string
+
+// Gerar model + migration (Tabela order_status)
+npx sequelize-cli model:generate --name OrderStatus --attributes sequence:smallint,description:string
+
+// Gerar model + migration (Tabela customer)
+npx sequelize-cli model:generate --name Customer --attributes name:string,address:text,phone:string,is_whatsapp:boolean,city_id:integer

@@ -48,4 +48,13 @@ app.use('/carriers', carriers)
 const shipmentPriorities = require('./routes/shipment_priorities')
 app.use('/shipment_priorities', shipmentPriorities)
 
+const cities = require('./routes/cities')
+app.use('/cities', cities)
+
+const orderStatus= require('./routes/order_statuses')
+app.use('/order_statuses', orderStatus)
+
+const customers = require('./routes/customers')
+app.use('/customers', customers)
+
 module.exports = app;
