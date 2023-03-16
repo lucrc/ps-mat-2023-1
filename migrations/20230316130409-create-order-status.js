@@ -11,11 +11,11 @@ module.exports = {
       },
       sequence: {
         type: Sequelize.SMALLINT,
-        allowNull: false,
+        allowNull: false
       },
       description: {
         type: Sequelize.STRING(30),
-        allowNull: false,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,

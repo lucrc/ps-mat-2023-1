@@ -6,7 +6,7 @@ lista de tabelas
 - payment_method --> ok
 - shipment_priority --> ok
 - order_status --> ok
-- customer
+- customer --> ok
 - customer_tag
 - order_tag
 - order
@@ -20,6 +20,11 @@ npx sequelize-cli model:generate --name User --attributes id:integer,name:string
 
 //Criar tabela no banco de dados:  
 npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
+
+
+// Comando para gerar apenas uma migration (sem model)
+npx sequelize-cli migration:generate --name alter-table-users
+npx sequelize-cli migration:generate --name alter-table-customers
 
 // Gerar model + migration (Tabela channel)
 npx sequelize-cli model:generate --name Channel --attributes id:integer,description:string,comission_fee:decimal

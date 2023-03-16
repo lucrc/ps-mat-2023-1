@@ -22,16 +22,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     sequence: {
       type: DataTypes.SMALLINT,
-      allowNull: false,
+      allowNull: false
     },
     description: {
       type: DataTypes.STRING(30),
-      allowNull: false,
+      allowNull: false
     },
   }, {
     sequelize,
     modelName: 'OrderStatus',
-    tableName: 'order_statuses',
+    tableName: 'order_statuses'
   });
   return OrderStatus;
 };

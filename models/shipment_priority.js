@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     description: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING,
       allowNull: false
     },
   }, {
