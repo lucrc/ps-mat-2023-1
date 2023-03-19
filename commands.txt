@@ -16,31 +16,14 @@ lista de tabelas
 
 // Gerar model + migration (Tabela usuários)
 npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
-
-
 //Criar tabela no banco de dados:  
 npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
-
-
-// Comando para gerar apenas uma migration (sem model)
-npx sequelize-cli migration:generate --name alter-table-users
-npx sequelize-cli migration:generate --name alter-table-customers
-
 // Gerar model + migration (Tabela channel)
 npx sequelize-cli model:generate --name Channel --attributes id:integer,description:string,comission_fee:decimal
-
-//Criar tabela no banco de dados:  
-npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
-
 // Gerar model + migration (Tabela payment_methods)
 npx sequelize-cli model:generate --name PaymentMethod --attributes description:string,operator_fee:decimal
-
-//Criar tabela no banco de dados:  
-npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
-
 // Gerar model + migration (Tabela carrier)
 npx sequelize-cli model:generate --name Carrier --attributes name:string
-
 // Gerar model + migration (Tabela shipment_priority)
 npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string
 
@@ -52,3 +35,26 @@ npx sequelize-cli model:generate --name OrderStatus --attributes sequence:smalli
 
 // Gerar model + migration (Tabela customer)
 npx sequelize-cli model:generate --name Customer --attributes name:string,address:text,phone:string,is_whatsapp:boolean,city_id:integer
+
+
+// Gerar model + migration (Tabela customer_tag)
+npx sequelize-cli model:generate --name CustomerTag --attributes customer_id:integer,tag_id:integer
+*********************************************************************************
+
+
+//Criar tabela no banco de dados:  
+npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
+
+*********************************************************************************
+
+// Comandos para gerar apenas uma migration (sem model)
+npx sequelize-cli migration:generate --name alter-table-users
+npx sequelize-cli migration:generate --name alter-table-customers
+
+
+
+
+
+
+
+
