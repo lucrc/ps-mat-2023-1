@@ -7,23 +7,25 @@ lista de tabelas
 - shipment_priority --> ok
 - order_status --> ok
 - customer --> ok
-- customer_tag
-- order_tag
-- order
-- tag 
+- customer_tag --> ok
+- order_tag --> ok
+- order --> ok
+- tag --> ok
 - order_rel_status
 
 
 // Gerar model + migration (Tabela usuários)
 npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
-//Criar tabela no banco de dados:  
-npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
+
 // Gerar model + migration (Tabela channel)
 npx sequelize-cli model:generate --name Channel --attributes id:integer,description:string,comission_fee:decimal
+
 // Gerar model + migration (Tabela payment_methods)
 npx sequelize-cli model:generate --name PaymentMethod --attributes description:string,operator_fee:decimal
+
 // Gerar model + migration (Tabela carrier)
 npx sequelize-cli model:generate --name Carrier --attributes name:string
+
 // Gerar model + migration (Tabela shipment_priority)
 npx sequelize-cli model:generate --name ShipmentPriority --attributes description:string
 
@@ -36,9 +38,22 @@ npx sequelize-cli model:generate --name OrderStatus --attributes sequence:smalli
 // Gerar model + migration (Tabela customer)
 npx sequelize-cli model:generate --name Customer --attributes name:string,address:text,phone:string,is_whatsapp:boolean,city_id:integer
 
-
 // Gerar model + migration (Tabela customer_tag)
 npx sequelize-cli model:generate --name CustomerTag --attributes customer_id:integer,tag_id:integer
+
+// Gerar model + migration (Tabela order_tag)
+npx sequelize-cli model:generate --name OrderTag --attributes order_id:integer,tag_id:integer
+
+// Gerar model + migration (Tabela order)
+npx sequelize-cli model:generate --name Order --attributes external_code:string,theme:string,description:text,remarks:text,pic_url:string,custom_name:string,custom_age:smallint,order_date:date,event_date:dateonly,artwork_date:dateonly,shimpment_date:dateonly,total_amount:decimal,customer_id:integer,channel_id:integer,carrier_id:integer,shipment_priority_id:integer,payment_method_id:integer
+
+// Gerar model + migration (Tabela tag)
+npx sequelize-cli model:generate --name Tag --attributes descripition:string,color:string,type:enum
+
+// Gerar model + migration (Tabela order_rel_status)
+npx sequelize-cli model:generate --name OrderRelStatus --attributes order_id:integer,order_status_id:integer,user_id:integer
+
+
 *********************************************************************************
 
 
