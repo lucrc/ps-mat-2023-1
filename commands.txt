@@ -66,6 +66,7 @@ npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
 npx sequelize-cli migration:generate --name alter-table-users
 npx sequelize-cli migration:generate --name alter-table-customers
 npx sequelize-cli migration:generate --name alter-customer-tags
+npx sequelize-cli migration:generate --name alter-tags
 
 
 
