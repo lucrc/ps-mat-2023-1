@@ -11,7 +11,7 @@ lista de tabelas
 - order_tag --> ok
 - order --> ok
 - tag --> ok
-- order_rel_status
+- order_rel_status --> ok
 
 
 // Gerar model + migration (Tabela usuários)
@@ -65,6 +65,7 @@ npx sequelize-cli db:migrate ( para dropar inserir “:undo” no final.)
 // Comandos para gerar apenas uma migration (sem model)
 npx sequelize-cli migration:generate --name alter-table-users
 npx sequelize-cli migration:generate --name alter-table-customers
+npx sequelize-cli migration:generate --name alter-customer-tags
 
 
 

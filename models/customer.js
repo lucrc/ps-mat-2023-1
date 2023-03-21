@@ -11,13 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
       this.belongsTo(models.City, {
         foreignKey: 'city_id',    //Nome do campo na tabela de ORIGEM
         targetKey: 'id',          //Nome do campo na tabela de DESTINO  
         as: 'city'                //Nome do atributo para exibição
       })
+
+      this.hasMany(models.CustomerTag, {
+        foreignKey:'customer_id',       //Campo da tabela estrangeira
+        sourceKey: 'id',            //Campo da tabela local
+        as: 'tags'             //Nome do campo de associação (plural)
+      })
     }
   }
+
   Customer.init({
     id: {
       allowNull: false,
