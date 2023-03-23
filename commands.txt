@@ -13,6 +13,13 @@ lista de tabelas
 - tag --> ok
 - order_rel_status --> ok
 
+Alteração de tabelas (criação das FK's)
+- customer_tags --> ok
+- customers --> ok
+- order_tags
+- orders
+- order_rel_statuses
+
 
 // Gerar model + migration (Tabela usuários)
 npx sequelize-cli model:generate --name User --attributes id:integer,name:string,email:string,verified_email:boolean,is_admin:boolean,phone:string,password:string
@@ -67,7 +74,9 @@ npx sequelize-cli migration:generate --name alter-table-users
 npx sequelize-cli migration:generate --name alter-table-customers
 npx sequelize-cli migration:generate --name alter-customer-tags
 npx sequelize-cli migration:generate --name alter-tags
-
+npx sequelize-cli migration:generate --name alter-order-tags
+npx sequelize-cli migration:generate --name alter-orders
+npx sequelize-cli migration:generate --name alter-table-order-order_rel_statuses
 
 
 

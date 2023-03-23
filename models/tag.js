@@ -11,6 +11,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      // this.hasMany(models.CustomerTag, {
+      //   foreignKey:'tag_id',       //Campo da tabela estrangeira
+      //   sourceKey: 'id',            //Campo da tabela local
+      //   as: 'customers'             //Nome do campo de associação (plural)
+      // })
+
+      this.belongsToMany(models.Customer, {
+        through: 'customer_tags',   //tabela intermediaria
+        foreignKey: 'tag_id',       // chave estrangeira
+        otherKey: 'customer_id',    // outra chave da tabeoa intermediaria
+        as: 'customers'             // Nome do campo de assiciação  (plural)  
+      })
     }
   }
   Tag.init({

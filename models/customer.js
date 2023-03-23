@@ -18,10 +18,16 @@ module.exports = (sequelize, DataTypes) => {
         as: 'city'                //Nome do atributo para exibição
       })
 
-      this.hasMany(models.CustomerTag, {
-        foreignKey:'customer_id',       //Campo da tabela estrangeira
-        sourceKey: 'id',            //Campo da tabela local
-        as: 'tags'             //Nome do campo de associação (plural)
+      // this.hasMany(models.CustomerTag, {
+      //   foreignKey:'customer_id',       //Campo da tabela estrangeira
+      //   sourceKey: 'id',            //Campo da tabela local
+      //   as: 'tags'             //Nome do campo de associação (plural)
+      // })
+      this.belongsToMany(models.Tag, {
+        through: 'customer_tags',   //tabela intermediaria
+        foreignKey: 'customer_id',  // chave estrangeira
+        otherKey: 'tag_id',         // outra chave da tabeoa intermediaria
+        as: 'tags'                  // Nome do campo de assiciação  (plural)  
       })
     }
   }

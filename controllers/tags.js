@@ -1,6 +1,6 @@
 //Importar o model correspondente ao controller
 const { ConnectionTimedOutError } = require('sequelize')
-const { Tag} = require('../models')
+const { Tag, Customer} = require('../models')
 
 const controller = {} // objeto vazio 
 
@@ -26,7 +26,9 @@ controller.create = async(req, res) => {
 
 controller.retrieve = async(req, res) => {
     try{
-        const data = await Tag.findAll()
+        const data = await Tag.findAll({
+            include: {model: Customer, as: 'customers'}
+        })
         //HTTP 200: OK (implícito)
         res.send(data)
 
@@ -56,9 +58,10 @@ controller.retrieveOne = async(req, res) => {
             {where: {id: req.params.id}}
         )
 
-        //response retorna um vetor. O primeiro elemento
-        //do vetor indica quantos registros foram afetados
-        // pelo update
+        /* response retorna um vetor. O primeiro elemento
+            do vetor indica quantos registros foram afetados
+            pelo update
+        */
         if(response[0]){
             //HTTP 204: No Content
             res.status(204).end()
