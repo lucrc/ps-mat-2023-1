@@ -11,6 +11,50 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      this.belongsToMany(models.User, {
+        through: 'order_rel_statuses',   //tabela intermediaria
+        foreignKey: 'order_id',       // chave estrangeira
+        otherKey: 'user_id',    // outra chave da tabeoa intermediaria
+        as: 'users'             // Nome do campo de assiciação  (plural)  
+      })
+      this.belongsToMany(models.OrderStatus, {
+        through: 'order_rel_statuses',   //tabela intermediaria
+        foreignKey: 'order_id',       // chave estrangeira
+        otherKey: 'order_status_id',    // outra chave da tabeoa intermediaria
+        as: 'order_statuses'             // Nome do campo de assiciação  (plural)  
+      })
+
+      this.belongsTo(models.Channel, {
+        foreignKey:'channel_id',       //Campo da tabela estrangeira
+        sourceKey: 'id',            //Campo da tabela local
+        as: 'channels'             //Nome do campo de associação (plural)
+      })
+
+      this.belongsTo(models.Carrier, {
+        foreignKey:'carrier_id',       //Campo da tabela estrangeira
+        sourceKey: 'id',            //Campo da tabela local
+        as: 'carriers'             //Nome do campo de associação (plural)
+      })
+
+      this.belongsTo(models.ShipmentPriority, {
+        foreignKey:'shipment_priority_id',       //Campo da tabela estrangeira
+        sourceKey: 'id',            //Campo da tabela local
+        as: 'shipment_priorities'             //Nome do campo de associação (plural)
+      })
+
+      this.belongsTo(models.PaymentMethod, {
+        foreignKey:'payment_method_id',       //Campo da tabela estrangeira
+        sourceKey: 'id',            //Campo da tabela local
+        as: 'payment_methods'             //Nome do campo de associação (plural)
+      })
+
+      this.belongsTo(models.Customer, {
+        foreignKey:'customer_id',       //Campo da tabela estrangeira
+        sourceKey: 'id',            //Campo da tabela local
+        as: 'customers'             //Nome do campo de associação (plural)
+      })
+
     }
   }
   Order.init({

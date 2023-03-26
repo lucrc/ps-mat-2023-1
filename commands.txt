@@ -16,9 +16,26 @@ lista de tabelas
 Alteração de tabelas (criação das FK's)
 - customer_tags --> ok
 - customers --> ok
-- order_tags
-- orders
-- order_rel_statuses
+- order_tags --> ok
+- orders --> ok
+- order_rel_statuses --> ok
+
+Relacionamento de tabelas através das FK's
+- cities --> ok
+- customer_tags --> ok
+- customers --> ok
+- order_tags --> ok
+- channels --> ok
+- carries --> ok
+- shipment_priority --> ok
+- payment_method --> ok
+- order_rel_statuses --> ok
+- users --> ok
+- order_statuses --> ok
+- tags --> ok
+- orders --> ok
+
+
 
 
 // Gerar model + migration (Tabela usuários)
@@ -75,7 +92,7 @@ npx sequelize-cli migration:generate --name alter-table-customers
 npx sequelize-cli migration:generate --name alter-customer-tags
 npx sequelize-cli migration:generate --name alter-tags
 npx sequelize-cli migration:generate --name alter-order-tags
-npx sequelize-cli migration:generate --name alter-orders
+npx sequelize-cli migration:generate --name table-alter-orders
 npx sequelize-cli migration:generate --name alter-table-order-order_rel_statuses
 
 

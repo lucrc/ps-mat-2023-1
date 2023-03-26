@@ -1,6 +1,6 @@
 //Importar o model correspondente ao controller
 const { ConnectionTimedOutError } = require('sequelize')
-const { Customer, City, Tag} = require('../models')
+const { Customer, City, Tag, Order} = require('../models')
 
 const controller = {} // objeto vazio 
 
@@ -29,7 +29,8 @@ controller.retrieve = async(req, res) => {
         const data = await Customer.findAll({
             include: [
                 {model: City, as: 'city'},
-                {model: Tag, as: 'tags'}
+                {model: Tag, as: 'tags'},
+                {model: Order, as: 'orders'}
             ]
         })
         //HTTP 200: OK (implícito)

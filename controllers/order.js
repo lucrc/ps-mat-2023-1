@@ -1,6 +1,6 @@
 //Importar o model correspondente ao controller
 const { ConnectionTimedOutError } = require('sequelize')
-const { Order} = require('../models')
+const { Order, User, OrderStatus, Customer, Channel, Carrier, ShipmentPriority, PaymentMethod} = require('../models')
 
 const controller = {} // objeto vazio 
 
@@ -26,7 +26,18 @@ controller.create = async(req, res) => {
 
 controller.retrieve = async(req, res) => {
     try{
-        const data = await Order.findAll()
+        const data = await Order.findAll({
+            include: [
+                {model: OrderStatus, as: 'order_statuses'},
+                {model: User, as: 'users'},
+                {model: Customer, as: 'customers'},
+                {model: Channel, as: 'channels'},
+                {model: Carrier, as: 'carriers'},
+                {model: ShipmentPriority, as: 'shipment_priorities'},
+                {model: PaymentMethod, as: 'payment_methods'}
+                
+            ]
+        })
         //HTTP 200: OK (implícito)
         res.send(data)
 

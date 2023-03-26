@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      
 
       this.belongsTo(models.Customer, {
         foreignKey: 'customer_id',    //Nome do campo na tabela de ORIGEM

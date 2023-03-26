@@ -11,6 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      // this.hasMany(models.OrderRelStatus, {
+      //   foreignKey:'order_status_id',       //Campo da tabela estrangeira
+      //   sourceKey: 'id',            //Campo da tabela local
+      //   as: 'order_rel_statuses'             //Nome do campo de associação (plural)
+      // })
+
+      this.belongsToMany(models.User, {
+        through: 'order_rel_statuses',   //tabela intermediaria
+        foreignKey: 'order_status_id',       // chave estrangeira
+        otherKey: 'user_id',    // outra chave da tabeoa intermediaria
+        as: 'users'             // Nome do campo de assiciação  (plural)  
+      })
+      this.belongsToMany(models.Order, {
+        through: 'order_rel_statuses',   //tabela intermediaria
+        foreignKey: 'order_status_id',       // chave estrangeira
+        otherKey: 'order_id',    // outra chave da tabeoa intermediaria
+        as: 'orders'             // Nome do campo de assiciação  (plural)  
+      })
     }
   }
   OrderStatus.init({

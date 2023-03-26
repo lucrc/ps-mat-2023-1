@@ -29,6 +29,11 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'tag_id',         // outra chave da tabeoa intermediaria
         as: 'tags'                  // Nome do campo de assiciação  (plural)  
       })
+      this.hasMany(models.Order, {
+        foreignKey:'customer_id',       //Campo da tabela estrangeira
+        sourceKey: 'id',            //Campo da tabela local
+        as: 'orders'             //Nome do campo de associação (plural)
+      })
     }
   }
 

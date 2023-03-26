@@ -1,6 +1,6 @@
 //Importar o model correspondente ao controller
 const { ConnectionTimedOutError } = require('sequelize')
-const { PaymentMethod} = require('../models')
+const { PaymentMethod, Orders} = require('../models')
 
 const controller = {} // objeto vazio 
 
@@ -26,7 +26,10 @@ controller.create = async(req, res) => {
 
 controller.retrieve = async(req, res) => {
     try{
-        const data = await PaymentMethod.findAll()
+        const data = await PaymentMethod.findAll({
+            include:       
+            {model: Order, as: 'orders'}
+        })
         //HTTP 200: OK (implícito)
         res.send(data)
 

@@ -43,7 +43,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeConstraint('customer_tags', 'customer_tags_tags_fk')
+    (await queryInterface.removeConstraint('customer_tags', 'customer_tags_tags_fk'))
     await queryInterface.removeConstraint('customer_tags', 'customer_tags_customers_fk')
 
   }
