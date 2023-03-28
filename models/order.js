@@ -28,31 +28,31 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(models.Channel, {
         foreignKey:'channel_id',       //Campo da tabela estrangeira
         sourceKey: 'id',            //Campo da tabela local
-        as: 'channels'             //Nome do campo de associação (plural)
+        as: 'channel'             //Nome do campo de associação 
       })
 
       this.belongsTo(models.Carrier, {
         foreignKey:'carrier_id',       //Campo da tabela estrangeira
         sourceKey: 'id',            //Campo da tabela local
-        as: 'carriers'             //Nome do campo de associação (plural)
+        as: 'carrier'             //Nome do campo de associação 
       })
 
       this.belongsTo(models.ShipmentPriority, {
         foreignKey:'shipment_priority_id',       //Campo da tabela estrangeira
         sourceKey: 'id',            //Campo da tabela local
-        as: 'shipment_priorities'             //Nome do campo de associação (plural)
+        as: 'shipment_priority'             //Nome do campo de associação 
       })
 
       this.belongsTo(models.PaymentMethod, {
         foreignKey:'payment_method_id',       //Campo da tabela estrangeira
         sourceKey: 'id',            //Campo da tabela local
-        as: 'payment_methods'             //Nome do campo de associação (plural)
+        as: 'payment_method'             //Nome do campo de associação 
       })
 
       this.belongsTo(models.Customer, {
         foreignKey:'customer_id',       //Campo da tabela estrangeira
         sourceKey: 'id',            //Campo da tabela local
-        as: 'customers'             //Nome do campo de associação (plural)
+        as: 'customer'             //Nome do campo de associação 
       })
 
     }

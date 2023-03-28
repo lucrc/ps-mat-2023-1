@@ -30,11 +30,11 @@ controller.retrieve = async(req, res) => {
             include: [
                 {model: OrderStatus, as: 'order_statuses'},
                 {model: User, as: 'users'},
-                {model: Customer, as: 'customers'},
-                {model: Channel, as: 'channels'},
-                {model: Carrier, as: 'carriers'},
-                {model: ShipmentPriority, as: 'shipment_priorities'},
-                {model: PaymentMethod, as: 'payment_methods'}
+                {model: Customer, as: 'customer'},
+                {model: Channel, as: 'channel'},
+                {model: Carrier, as: 'carrier'},
+                {model: ShipmentPriority, as: 'shipment_priority'},
+                {model: PaymentMethod, as: 'payment_method'}
                 
             ]
         })
