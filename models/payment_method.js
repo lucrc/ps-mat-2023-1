@@ -28,11 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.STRING(30),
-      allowNull: false,
+      /*allowNull: false,*/
     },
     operator_fee: {
       type: DataTypes.DECIMAL(18, 2),
-      allowNull: false,
+      /*allowNull: false,*/
     },
   }, {
     sequelize,

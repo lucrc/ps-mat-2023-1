@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) => {
     artwork_date: {
       type: DataTypes.DATEONLY
     },
-    shimpment_date: {
+    shipment_date: {
       type: DataTypes.DATEONLY,
       allowNull: false,
     },

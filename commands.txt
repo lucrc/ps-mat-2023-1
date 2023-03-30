@@ -94,6 +94,7 @@ npx sequelize-cli migration:generate --name alter-tags
 npx sequelize-cli migration:generate --name alter-order-tags
 npx sequelize-cli migration:generate --name table-alter-orders
 npx sequelize-cli migration:generate --name alter-table-order-order_rel_statuses
+npx sequelize-cli migration:generate --name table-alter-orders-shipment_date
 
 
 

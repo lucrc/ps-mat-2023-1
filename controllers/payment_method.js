@@ -27,10 +27,10 @@ controller.create = async(req, res) => {
 
 controller.retrieve = async(req, res) => {
     try{
-        const data = await PaymentMethod.findAll(/*{
+        const data = await PaymentMethod.findAll({
             include:       
             {model: Order, as: 'orders'}
-        }*/)
+        })
         //HTTP 200: OK (implícito)
         res.send(data)
 
