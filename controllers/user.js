@@ -66,9 +66,9 @@ controller.update = async (req, res) => {
         // Se houver sido passado o campo "password",
         // criptografa a senha
         
-        // if(req.body.password){
-        //     req.body.password = await bcrypt.hash(req.body.password, 12)
-        // }
+        if(req.body.password){
+            req.body.password = await bcrypt.hash(req.body.password, 12)
+        }
         const response = await User.update(
             req.body,
             {where: {id: req.params.id}}
@@ -77,9 +77,9 @@ controller.update = async (req, res) => {
         //response retorna um vetor. O primeiro elemento
         //do vetor indica quantos registros foram afetados
         // pelo update
-        if(response[0]){
+        if(response[0] > 0){
             // HTTP 204: No Content
-            // res.status(204).end()
+            res.status(204).end()
             }
             else { //Não encontrou o registro para atualizar
                 //HTTP 404: Not found
@@ -127,7 +127,7 @@ controller.login = async (req, res) =>{
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                verifiede_email: user.verifiede_email,
+                verified_email: user.verified_email,
                 is_admin: user.is_admin,
                 phone: user.phone
             },
@@ -141,7 +141,7 @@ controller.login = async (req, res) =>{
         }
         else{
             //Senha errada ~> HTTP 401: Unauthorized
-            res.status(401).end
+            res.status(401).end()
         }
     }
     catch(error){

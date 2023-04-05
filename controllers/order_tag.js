@@ -64,7 +64,7 @@ controller.retrieveOne = async(req, res) => {
         //response retorna um vetor. O primeiro elemento
         //do vetor indica quantos registros foram afetados
         // pelo update
-        if(response[0]){
+        if(response[0] > 0){
             //HTTP 204: No Content
             res.status(204).end()
             }
