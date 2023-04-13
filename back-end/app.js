@@ -76,5 +76,10 @@ app.use('/tags', tags)
 const orderRelStatus= require('./routes/order_rel_statuses')
 app.use('/order_rel_statuses', orderRelStatus)
 
+const suppliers= require('./routes/suppliers')
+app.use('/suppliers', suppliers)
+
+const products= require('./routes/products')
+app.use('/products', products)
 
 module.exports = app;

@@ -12,6 +12,9 @@ lista de tabelas
 - order --> ok
 - tag --> ok
 - order_rel_status --> ok
+- suppliers
+- products
+
 
 Alteração de tabelas (criação das FK's)
 - customer_tags --> ok
@@ -77,6 +80,11 @@ npx sequelize-cli model:generate --name Tag --attributes descripition:string,col
 // Gerar model + migration (Tabela order_rel_status)
 npx sequelize-cli model:generate --name OrderRelStatus --attributes order_id:integer,order_status_id:integer,user_id:integer
 
+// Gerar model + migration (Tabela suppliers)
+npx sequelize-cli model:generate --name Supplier --attributes name:string,address:text,phone:string
+
+/ Gerar model + migration (Tabela Products)
+npx sequelize-cli model:generate --name Product --attributes description:string,quantity:decimal,unit:enum,suplier_id:integer
 
 *********************************************************************************
 
@@ -95,6 +103,8 @@ npx sequelize-cli migration:generate --name alter-order-tags
 npx sequelize-cli migration:generate --name table-alter-orders
 npx sequelize-cli migration:generate --name alter-table-order-order_rel_statuses
 npx sequelize-cli migration:generate --name table-alter-orders-shipment_date
+
+npx sequelize-cli migration:generate --name alter-table-products
 
 
 
