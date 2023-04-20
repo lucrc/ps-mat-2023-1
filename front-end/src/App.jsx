@@ -1,23 +1,28 @@
+
 import './App.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
+import HeaderBar from './components/ui/HeaderBar'
+import Box from '@mui/material/Box'
 
 
 function App() {
   
 
   return (
-    <div className="App">
+    
       <BrowserRouter>
+      <HeaderBar />
+      <Box sx={{m: '25px auto'}}>
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/Login" element={<Login />}/> 
         </Routes>
-      
+      </Box>
       </BrowserRouter>
       
-    </div>
+    
   )
 }
 

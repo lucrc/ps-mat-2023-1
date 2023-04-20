@@ -1,11 +1,73 @@
 import React from  'react'
+import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+
 
 
 export default function Login(){
+    const[email, setEmail] = React.useState('')
+    const[password, setPassword] = React.useState('')
+    function handleChange(event){
+        if(event.target.name === 'email') setEmail(event.target.value)
+        else setPassword(event.target.value)
+    }
+    async function handleSubmit(event){
+        event.preventDefault()
+        try {
+        let response = await fetch('http://localhost:3637/users/login',{
+            method: "POST",
+            body: JSON.stringify({email, password}),
+            headers:{"Content-type": "application/json; charset=UTF-8"}
+        })
+        }
+        catch(error){
+            console.error(error)
+        }
+    }
     return(
         <>
-            <h1>Página de login</h1>
-            <p>Futura página de login</p>
+            <Typography variant="h3" component="h1" sx={{textAlign: 'center'}}>
+            Autentique-se
+            </Typography>
+            <Paper sx={{
+                width: '512px',
+                maxWidth: '90%',
+                margin: '24px auto 0 auto',
+                p: '12px'
+
+            }}>
+                <Typography variant="h5" component="div">
+                    <form onSubmit>
+                        <TextField 
+                        id="email" 
+                        className='form-field'
+                        name="email"
+                        label="E-mail" 
+                        variant="filled"
+                        fullWidth
+                        onChange={handleChange}
+                        value={email}
+                        />
+                        <TextField 
+                        id="password" 
+                        className='form-field'
+                        name="password"
+                        label="Senha" 
+                        variant="filled"
+                        type="password"
+                        fullWidth
+                        onChange={handleChange}
+                        value={password}
+                        />
+                        <Button variant="contained" type="submit" color="secondary" fullWidth >
+                            Enviar
+                        </Button>
+                         
+                    </form>
+                </Typography>
+            </Paper>
         </>
     )
 }
