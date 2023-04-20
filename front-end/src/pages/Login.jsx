@@ -16,7 +16,7 @@ export default function Login(){
     async function handleSubmit(event){
         event.preventDefault()
         try {
-        let response = await fetch('http://localhost:3637/users/login',{
+        let response = await fetch('http://localhost:3000/users/login',{
             method: "POST",
             body: JSON.stringify({email, password}),
             headers:{"Content-type": "application/json; charset=UTF-8"}
@@ -39,7 +39,7 @@ export default function Login(){
 
             }}>
                 <Typography variant="h5" component="div">
-                    <form onSubmit>
+                    <form onSubmit={handleSubmit}>
                         <TextField 
                         id="email" 
                         className='form-field'
