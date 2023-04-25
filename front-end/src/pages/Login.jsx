@@ -10,10 +10,11 @@ import Alert from '@mui/material/Alert
 
 
 
-export default function Login(){
+export default function Login() {
     const[email, setEmail] = React.useState('')
     const[password, setPassword] = React.useState('')
-    const[snack, setShack] = React.useState({
+    const[showWaitting, setShowWaitting] = React.useState(false)
+    const[snack, setSnack] = React.useState({
         show: false,
         message: '',
         severity: 'sucess' // ou 'error'
@@ -32,22 +33,33 @@ export default function Login(){
             body: JSON.stringify({email, password}),
             headers:{"Content-type": "application/json; charset=UTF-8"}
         })
+        
+        console.log(response)
+        
         if(response.ok) {            
             const result = await response.json()
+            
             console.log({result})
             }
             //Grava o token recebido no localStorage
             // Isso é um sério problema de segurança. temos de consertar depois
             window.localStorage.setItem(‘token’, result.token)
+            // Exibe o snackbar de sucesso
+            setSnack({
+                show: true,
+                message: 'Autenticação realizada com sucesso!',
+                severity: 'success'
+            })
 
+            }
+            else throw new Error('Usuário ou senha incorretos')
         }
-        else throw new Error('Usuário ou senha incorretos')
         catch(error){
             console.error(error)
             //Exibe o snackbar de erro
             setSnack({
               show: true,
-              message: message.error,
+              message: error.message,
               severity: 'error'  
             })
         }
@@ -64,11 +76,17 @@ export default function Login(){
   };
     return(
         <>
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={showWaiting}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             
             <Snackbar open={snack.show} autoHideDuration={4000} onClose={handleSnackClose}>
-            <Alert onClose={handleSnackClose} severity={snack.severety} sx={{ width: '100%' }}>
-                {snack.mesage}
-            </Alert>
+                <Alert onClose={handleSnackClose} severity={snack.severety} sx={{ width: '100%' }}>
+                    {snack.mesage}
+                </Alert>
             </Snackbar>
       
             <Typography variant="h3" component="h1" sx={{textAlign: 'center'}}>
