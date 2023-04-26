@@ -6,14 +6,14 @@ import Button from '@mui/material/Button'
 import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import Snackbar from '@mui/material/Snackbar'
-import Alert from '@mui/material/Alert
+import Alert from '@mui/material/Alert'
 
 
 
 export default function Login() {
     const[email, setEmail] = React.useState('')
     const[password, setPassword] = React.useState('')
-    const[showWaitting, setShowWaitting] = React.useState(false)
+    const[showWaiting, setShowWaiting] = React.useState(false)
     const[snack, setSnack] = React.useState({
         show: false,
         message: '',
@@ -26,7 +26,7 @@ export default function Login() {
     
     async function handleSubmit(event){
         event.preventDefault() // Impede o recarregamento da pagina
-        setShowWaitting(true)  //Mostra o spinner de espera
+        setShowWaiting(true)  //Mostra o spinner de espera
         try {
         let response = await fetch('http://localhost:3000/users/login',{
             method: "POST",
@@ -40,18 +40,17 @@ export default function Login() {
             const result = await response.json()
             
             console.log({result})
-            }
+            
             //Grava o token recebido no localStorage
             // Isso é um sério problema de segurança. temos de consertar depois
-            window.localStorage.setItem(‘token’, result.token)
+            window.localStorage.setItem('token', result.token)
             // Exibe o snackbar de sucesso
             setSnack({
                 show: true,
                 message: 'Autenticação realizada com sucesso!',
                 severity: 'success'
             })
-
-            }
+            }            
             else throw new Error('Usuário ou senha incorretos')
         }
         catch(error){
@@ -64,7 +63,7 @@ export default function Login() {
             })
         }
         finally{
-            setShowWaitting(false) //Esconde o spinner de espera
+            setShowWaiting(false) //Esconde o spinner de espera
         }    
     }
     function handleSnackClose (event, reason) {
@@ -84,8 +83,8 @@ export default function Login() {
             </Backdrop>
             
             <Snackbar open={snack.show} autoHideDuration={4000} onClose={handleSnackClose}>
-                <Alert onClose={handleSnackClose} severity={snack.severety} sx={{ width: '100%' }}>
-                    {snack.mesage}
+                <Alert onClose={handleSnackClose} severity={snack.severity} sx={{ width: '100%' }}>
+                    {snack.message}
                 </Alert>
             </Snackbar>
       
@@ -132,3 +131,4 @@ export default function Login() {
         </>
     )
 }
+
