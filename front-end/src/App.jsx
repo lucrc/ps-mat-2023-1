@@ -8,6 +8,7 @@ import Box from '@mui/material/Box'
 import PaymentMethodList from './pages/payment_method/PaymentMethodList'
 import PaymentMethodForm from './pages/payment_method/PaymentMethodForm'
 import ChannelList from './pages/channel/ChannelList'
+import ChannelForm from './pages/channel/ChannelForm'
 
 
 
@@ -40,8 +41,12 @@ function App() {
           {<AuthGuard> <PaymentMethodForm /> </AuthGuard>
           }/>
 
-        <Route path="/channel" element=
+          <Route path="/channel" element=
           {<AuthGuard> <ChannelList /> </AuthGuard>
+          }/>
+
+          <Route path="/channel/new" element=
+          {<AuthGuard> <ChannelForm /> </AuthGuard>
           }/>
           
         </Routes>
