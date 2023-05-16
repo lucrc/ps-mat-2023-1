@@ -9,6 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Notification from "../../components/ui/Notification";
 import { useNavigate } from "react-router-dom";
 import PaymentMethod from "../../models/PaymentMethod";
+import getValidationMessages from "../../utils/getValidationMessages";
 
 
 
@@ -19,7 +20,11 @@ export default function PaymentMethodForm(){
     const navigate = useNavigate()
 
     const [state, setState] = React.useState({
-        paymentMethod: {},
+        paymentMethod: {
+          description: '',
+          operator_fee: ''
+        },
+        errors: {},
         showWaiting: false,
         notif:{
             show: false,
@@ -30,6 +35,7 @@ export default function PaymentMethodForm(){
 
     const {
         paymentMethod,
+        errors,
         showWaiting,
         notif
     } = state
@@ -48,11 +54,11 @@ export default function PaymentMethodForm(){
     }
     async function sendData() {
         console.log('sendData')
-        setState({...state, showWaiting: true})
+        setState({...state, showWaiting: true, errors:{}})
         try{
             //Chama a validação da biblioteca Joi
            
-            await PaymentMethod.validateAsync(paymentMethod)
+            await PaymentMethod.validateAsync(paymentMethod, {abortEarly: false})
             
             await myfetch.post(API_PATH, paymentMethod)
             //Dar Feedback positivo e voltar para a listagem            
@@ -66,13 +72,16 @@ export default function PaymentMethodForm(){
             })
         }
         catch(error){
+          const { validationError, errorMessages } = getValidationMessages(error)
+
             console.error(error)
             setState({
                 ...state, 
                 showWaiting: false,
+                errors: errorMessages,
                 notif: {
                     severity: 'error',
-                    show: true,
+                    show: !validationError,
                     message: 'ERRO: ' + error.message
                 }
             })
@@ -121,6 +130,8 @@ export default function PaymentMethodForm(){
                     required
                     value={paymentMethod.description} // nome do campo da tabela
                     onChange={handleFormFieldChange}
+                    error={errors?.description}
+                    helperText={errors?.description}
                     
 
                 />
@@ -133,6 +144,8 @@ export default function PaymentMethodForm(){
                     name="operator_fee" //Nome do campo da tabela
                     value={paymentMethod.operator_fee} // nome do campo da tabela
                     onChange={handleFormFieldChange}
+                    error={errors?.operator_fee}
+                    helperText={errors?.operator_fee}
 
                 />
                 <Fab 
