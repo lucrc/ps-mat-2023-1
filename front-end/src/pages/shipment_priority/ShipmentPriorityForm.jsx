@@ -8,21 +8,21 @@ import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import Notification from "../../components/ui/Notification";
 import { useNavigate, useParams } from "react-router-dom";
-import Carrier from "../../models/Carrier";
+import ShipmentPriority from "../../models/ShipmentPriority";
 import getValidationMessages from "../../utils/getValidationMessages";
 
 
 
 
-export default function CarrierForm(){
-    const API_PATH = '/carriers'
-
-    const navigate = useNavigate()
+export default function ShipmentPriorityForm(){
+    const API_PATH = '/shipment_priorities'
     const params = useParams()
 
+    const navigate = useNavigate()
+
     const [state, setState] = React.useState({
-        carrier: {
-          name: ''
+        shipmentPriority: {
+          description: '',
         },
         errors: {},
         showWaiting: false,
@@ -34,16 +34,16 @@ export default function CarrierForm(){
     })
 
     const {
-        carrier,
+        shipmentPriority,
         errors,
         showWaiting,
         notif
     } = state
 
     function handleFormFieldChange(event) {
-        const carrierCopy = {...carrier}
-        carrierCopy[event.target.name] = event.target.value
-        setState({...state, carrier: carrierCopy})
+        const shipmentPriorityCopy = {...shipmentPriority}
+        shipmentPriorityCopy[event.target.name] = event.target.value
+        setState({...state, shipmentPriority: shipmentPriorityCopy})
     }
     function handleFormSubmit(event){
         
@@ -69,7 +69,7 @@ export default function CarrierForm(){
         const result = await myfetch.get(`${API_PATH}/${params.id}`)
         setState({
           ...state,
-          carrier: result,
+          shipmentPriority: result,
           showWaiting: false
         })
       }
@@ -86,19 +86,18 @@ export default function CarrierForm(){
         })
       }
     }
-
     async function sendData() {
         console.log('sendData')
         setState({...state, showWaiting: true, errors:{}})
         try{
             //Chama a validação da biblioteca Joi
            
-            await Carrier.validateAsync(carrier, {abortEarly: false})
-            //Registro já existe: chama PUT para atualizar
-            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, carrier)
-            // Registro não existe: chama POST para criar
-            else await myfetch.post(API_PATH, carrier)
+            await ShipmentPriority.validateAsync(shipmentPriority, {abortEarly: false})
             
+            //Registro já existe: chama PUT para atualizar
+            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, shipmentPriority)
+            // Registro não existe: chama POST para criar
+            else await myfetch.post(API_PATH, shipmentPriority)
             //Dar Feedback positivo e voltar para a listagem            
             setState({...state, 
                 showWaiting: false,
@@ -154,21 +153,20 @@ export default function CarrierForm(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle 
-            title={ params.id? "Editar meio de entrega" : "Cadastrar novo meio de entrega" }/>
+            <PageTitle title="Cadastrar novo método de pagamento" />
             
 
             <form onSubmit={handleFormSubmit}>
                 <TextField  
-                    label="Nome" 
+                    label="Descrição" 
                     variant="filled" 
-                    name="name" //Nome do campo da tabela
+                    name="description" //Nome do campo da tabela
                     fullWidth
                     required
-                    value={carrier.name} // nome do campo da tabela
+                    value={shipmentPriority.description} // nome do campo da tabela
                     onChange={handleFormFieldChange}
-                    error={errors?.name}
-                    helperText={errors?.name}
+                    error={errors?.description}
+                    helperText={errors?.description}
                     
 
                 />

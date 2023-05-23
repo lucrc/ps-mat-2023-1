@@ -17,12 +17,12 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 
 
-export default function ChannelList(){
+export default function ShipmentPriorityList(){
 
-    const API_PATH = '/channels'
+    const API_PATH = '/shipment_priorities'
 
     const [state, setState] = React.useState({
-        channels: [],
+        shipmentPriority: [],
         showWaiting: false,
         showDialog: false,
         deleteId: null,
@@ -33,7 +33,7 @@ export default function ChannelList(){
         }
     })
     const {
-        channels,
+        shipmentPriority,
         showWaiting,
         showDialog,
         deleteId,
@@ -46,7 +46,7 @@ export default function ChannelList(){
             const result = await myfetch.get(API_PATH)            
             setState({
                 ... state, 
-                channels: result, 
+                shipmentPriority: result, 
                 showWaiting: false, 
                 showDialog: false
             })           
@@ -71,12 +71,7 @@ export default function ChannelList(){
           field: 'description',
           headerName: 'Descrição',
           width: 150          
-        },
-        {
-          field: 'comission_fee',
-          headerName: 'Taxa de comissão',
-          width: 150          
-        },
+        },        
         {
             field: 'edit',
             headerName: 'Editar',
@@ -207,7 +202,7 @@ export default function ChannelList(){
             <Paper elevation={4} sx={{ height: 400, width: '100%' }}>
 
             <DataGrid
-                rows={channels}
+                rows={shipmentPriority}
                 columns={columns}
                 initialState={{
                 pagination: {

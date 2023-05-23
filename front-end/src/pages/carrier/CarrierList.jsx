@@ -72,11 +72,7 @@ export default function CarrierList(){
           headerName: 'Nome',
           width: 150          
         },
-        // {
-        //   field: 'operator_fee',
-        //   headerName: 'Taxa de operação',
-        //   width: 150          
-        // },
+        
         {
             field: 'edit',
             headerName: 'Editar',

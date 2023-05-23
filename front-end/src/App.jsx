@@ -10,6 +10,9 @@ import PaymentMethodForm from './pages/payment_method/PaymentMethodForm'
 import ChannelList from './pages/channel/ChannelList'
 import ChannelForm from './pages/channel/ChannelForm'
 import CarrierList from './pages/carrier/CarrierList'
+import CarrierForm from './pages/carrier/CarrierForm'
+import ShipmentPriorityList from './pages/shipment_priority/ShipmentPriorityList'
+import ShipmentPriorityForm from './pages/shipment_priority/ShipmentPriorityForm'
 
 
 
@@ -50,12 +53,36 @@ function App() {
           {<AuthGuard> <ChannelList /> </AuthGuard>
           }/>
 
+          <Route path="/channel/:id" element=
+          {<AuthGuard> <ChannelForm /> </AuthGuard>
+          }/>
+
           <Route path="/channel/new" element=
           {<AuthGuard> <ChannelForm /> </AuthGuard>
           }/>
 
           <Route path="/carrier" element=
-          {<AuthGuard> <CarrierList /> </AuthGuard>
+          {<AuthGuard> <CarrierList /> </AuthGuard>          
+          }/>
+          
+          <Route path="/carrier/new" element=
+          {<AuthGuard> <CarrierForm /> </AuthGuard>
+          }/>
+
+          <Route path="/carrier/:id" element=
+          {<AuthGuard> <CarrierForm /> </AuthGuard>
+          }/>
+          
+          <Route path="/shipment_priority" element=
+          {<AuthGuard> <ShipmentPriorityList /> </AuthGuard>
+          }/>
+
+          <Route path="/shipment_priority/:id" element=
+          {<AuthGuard> <ShipmentPriorityForm /> </AuthGuard>
+          }/>
+
+          <Route path="/shipment_priority/new" element=
+          {<AuthGuard> <ShipmentPriorityForm /> </AuthGuard>
           }/>
 
           
