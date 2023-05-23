@@ -8,20 +8,20 @@ import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import Notification from "../../components/ui/Notification";
 import { useNavigate, useParams } from "react-router-dom";
-import PaymentMethod from "../../models/PaymentMethod";
+import Carrier from "../../models/Carrier";
 import getValidationMessages from "../../utils/getValidationMessages";
 
 
 
 
-export default function PaymentMethodForm(){
+export default function CarrierForm(){
     const API_PATH = '/payment_methods'
 
     const navigate = useNavigate()
     const params = useParams()
 
     const [state, setState] = React.useState({
-        paymentMethod: {
+        carrier: {
           description: '',
           operator_fee: ''
         },
@@ -35,16 +35,16 @@ export default function PaymentMethodForm(){
     })
 
     const {
-        paymentMethod,
+        carrier,
         errors,
         showWaiting,
         notif
     } = state
 
     function handleFormFieldChange(event) {
-        const paymentMethodCopy = {...paymentMethod}
-        paymentMethodCopy[event.target.name] = event.target.value
-        setState({...state, paymentMethod: paymentMethodCopy})
+        const carrierCopy = {...carrier}
+        carrierCopy[event.target.name] = event.target.value
+        setState({...state, carrier: carrierCopy})
     }
     function handleFormSubmit(event){
         
@@ -70,7 +70,7 @@ export default function PaymentMethodForm(){
         const result = await myfetch.get(`${API_PATH}/${params.id}`)
         setState({
           ...state,
-          paymentMethod: result,
+          carrier: result,
           showWaiting: false
         })
       }
@@ -94,11 +94,11 @@ export default function PaymentMethodForm(){
         try{
             //Chama a validação da biblioteca Joi
            
-            await PaymentMethod.validateAsync(paymentMethod, {abortEarly: false})
+            await Carrier.validateAsync(carrier, {abortEarly: false})
             //Registro já existe: chama PUT para atualizar
-            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, paymentMethod)
+            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, carrier)
             // Registro não existe: chama POST para criar
-            else await myfetch.post(API_PATH, paymentMethod)
+            else await myfetch.post(API_PATH, carrier)
             
             //Dar Feedback positivo e voltar para a listagem            
             setState({...state, 
@@ -157,9 +157,7 @@ export default function PaymentMethodForm(){
 
             <PageTitle 
             title={ params.id? "Editar método de pagamento" : "Cadastrar novo método de pagamento" }/>
-            <div>{notif.severity}</div>
-            <div>{paymentMethod.description}</div>
-            <div>{paymentMethod.operator_fee}</div>
+            
 
             <form onSubmit={handleFormSubmit}>
                 <TextField  
@@ -168,26 +166,14 @@ export default function PaymentMethodForm(){
                     name="description" //Nome do campo da tabela
                     fullWidth
                     required
-                    value={paymentMethod.description} // nome do campo da tabela
+                    value={carrier.description} // nome do campo da tabela
                     onChange={handleFormFieldChange}
                     error={errors?.description}
                     helperText={errors?.description}
                     
 
                 />
-                <TextField  
-                    label="Taxa da operação" 
-                    type="number"
-                    fullWidth
-                    required
-                    variant="filled" 
-                    name="operator_fee" //Nome do campo da tabela
-                    value={paymentMethod.operator_fee} // nome do campo da tabela
-                    onChange={handleFormFieldChange}
-                    error={errors?.operator_fee}
-                    helperText={errors?.operator_fee}
-
-                />
+                
                 <Fab 
                     variant="extended" 
                     color="secondary"

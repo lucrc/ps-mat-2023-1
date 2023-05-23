@@ -29,7 +29,8 @@ controller.retrieve = async(req, res) => {
     try{
         const data = await PaymentMethod.findAll({
             include:       
-            {model: Order, as: 'orders'}
+            {model: Order, as: 'orders'},
+            order:[['description','asc']]
         })
         //HTTP 200: OK (implícito)
         res.send(data)

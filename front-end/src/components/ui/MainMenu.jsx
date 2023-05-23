@@ -49,6 +49,8 @@ export default function MainMenu() {
         <Divider />
         <MenuItem onClick={handleClose} component={Link} to="/channel">Canais de venda</MenuItem>
         <Divider />
+        <MenuItem onClick={handleClose} component={Link} to="/carrier">Meios de entrega</MenuItem>
+        <Divider />
         <MenuItem onClick={handleClose} component={Link} to="/">Início</MenuItem>
       </Menu>
     </div>

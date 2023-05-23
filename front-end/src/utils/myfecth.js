@@ -46,5 +46,11 @@ myfetch.delete = async function(path){
     
     else throw new Error(getErrorDescription(response))
 }
+myfetch.put = async function(path, body){
+    const response = await fetch(baseUrl + path, defaultOptions(body, 'PUT'))
+    console.log(body)
+    if(response.ok) return true
+    else throw new Error(getErrorDescription(response))
+}
 
 export default myfetch
