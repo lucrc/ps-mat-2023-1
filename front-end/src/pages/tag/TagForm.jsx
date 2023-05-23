@@ -8,22 +8,23 @@ import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import Notification from "../../components/ui/Notification";
 import { useNavigate, useParams } from "react-router-dom";
-import PaymentMethod from "../../models/PaymentMethod";
+import Tag from "../../models/Tag";
 import getValidationMessages from "../../utils/getValidationMessages";
 
 
 
 
-export default function PaymentMethodForm(){
-    const API_PATH = '/payment_methods'
-
-    const navigate = useNavigate()
+export default function TagForm(){
+    const API_PATH = '/tags'
     const params = useParams()
 
+    const navigate = useNavigate()
+
     const [state, setState] = React.useState({
-        paymentMethod: {
+        tag: {
           description: '',
-          operator_fee: ''
+          color: '',
+          type: null
         },
         errors: {},
         showWaiting: false,
@@ -35,16 +36,16 @@ export default function PaymentMethodForm(){
     })
 
     const {
-        paymentMethod,
+        tag,
         errors,
         showWaiting,
         notif
     } = state
 
     function handleFormFieldChange(event) {
-        const paymentMethodCopy = {...paymentMethod}
-        paymentMethodCopy[event.target.name] = event.target.value
-        setState({...state, paymentMethod: paymentMethodCopy})
+        const tagCopy = {...tag}
+        tagCopy[event.target.name] = event.target.value
+        setState({...state, tag: tagCopy})
     }
     function handleFormSubmit(event){
         
@@ -70,7 +71,7 @@ export default function PaymentMethodForm(){
         const result = await myfetch.get(`${API_PATH}/${params.id}`)
         setState({
           ...state,
-          paymentMethod: result,
+          tag: result,
           showWaiting: false
         })
       }
@@ -87,19 +88,18 @@ export default function PaymentMethodForm(){
         })
       }
     }
-
     async function sendData() {
         console.log('sendData')
         setState({...state, showWaiting: true, errors:{}})
         try{
             //Chama a validação da biblioteca Joi
            
-            await PaymentMethod.validateAsync(paymentMethod, {abortEarly: false})
-            //Registro já existe: chama PUT para atualizar
-            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, paymentMethod)
-            // Registro não existe: chama POST para criar
-            else await myfetch.post(API_PATH, paymentMethod)
+            await Tag.validateAsync(tag, {abortEarly: false})
             
+            //Registro já existe: chama PUT para atualizar
+            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, tag)
+            // Registro não existe: chama POST para criar
+            else await myfetch.post(API_PATH, tag)
             //Dar Feedback positivo e voltar para a listagem            
             setState({...state, 
                 showWaiting: false,
@@ -155,8 +155,7 @@ export default function PaymentMethodForm(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle 
-            title={ params.id? "Editar método de pagamento" : "Cadastrar novo método de pagamento" }/>
+            <PageTitle title={params.id? "Editar tag":"Cadastrar nova tag"}/>
             
 
             <form onSubmit={handleFormSubmit}>
@@ -166,7 +165,7 @@ export default function PaymentMethodForm(){
                     name="description" //Nome do campo da tabela
                     fullWidth
                     required
-                    value={paymentMethod.description} // nome do campo da tabela
+                    value={tag.description} // nome do campo da tabela
                     onChange={handleFormFieldChange}
                     error={errors?.description}
                     helperText={errors?.description}
@@ -174,16 +173,27 @@ export default function PaymentMethodForm(){
 
                 />
                 <TextField  
-                    label="Taxa da operação" 
-                    type="number"
+                    label="Cor" 
                     fullWidth
                     required
                     variant="filled" 
-                    name="operator_fee" //Nome do campo da tabela
-                    value={paymentMethod.operator_fee} // nome do campo da tabela
+                    name="color" //Nome do campo da tabela
+                    value={tag.color} // nome do campo da tabela
                     onChange={handleFormFieldChange}
-                    error={errors?.operator_fee}
-                    helperText={errors?.operator_fee}
+                    error={errors?.color}
+                    helperText={errors?.color}
+
+                />
+                <TextField  
+                    label="Tipo" 
+                    fullWidth
+                    required
+                    variant="filled" 
+                    name="type" //Nome do campo da tabela
+                    value={tag.type} // nome do campo da tabela
+                    onChange={handleFormFieldChange}
+                    error={errors?.type}
+                    helperText={errors?.type}
 
                 />
                 <Fab 
@@ -200,4 +210,3 @@ export default function PaymentMethodForm(){
         </>
     )
 }
-

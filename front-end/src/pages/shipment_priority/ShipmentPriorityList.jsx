@@ -182,7 +182,7 @@ export default function ShipmentPriorityList(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle title="Listagem de métodos de pagamentos" />
+            <PageTitle title="Listagem de prioridades de entrega" />
             <Box sx={{
                 display: "flex",
                 justifyContent: "right",

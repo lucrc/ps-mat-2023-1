@@ -15,7 +15,7 @@ import getValidationMessages from "../../utils/getValidationMessages";
 
 
 export default function OrderStatusForm(){
-    const API_PATH = '/shipment_priorities'
+    const API_PATH = '/order_statuses'
     const params = useParams()
 
     const navigate = useNavigate()
@@ -154,7 +154,7 @@ export default function OrderStatusForm(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle title="Cadastrar novo status de pedido" />
+            <PageTitle title={params.id?"Editar status de pedidos":"Cadastrar novo status de pedido"}/>
             
 
             <form onSubmit={handleFormSubmit}>

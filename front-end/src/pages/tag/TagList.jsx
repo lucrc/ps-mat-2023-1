@@ -17,12 +17,12 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 
 
-export default function OrderStatusList(){
+export default function TagList(){
 
-    const API_PATH = '/order_statuses'
+    const API_PATH = '/tags'
 
     const [state, setState] = React.useState({
-        orderStatus: [],
+        tags: [],
         showWaiting: false,
         showDialog: false,
         deleteId: null,
@@ -33,7 +33,7 @@ export default function OrderStatusList(){
         }
     })
     const {
-        orderStatus,
+        tags,
         showWaiting,
         showDialog,
         deleteId,
@@ -46,7 +46,7 @@ export default function OrderStatusList(){
             const result = await myfetch.get(API_PATH)            
             setState({
                 ... state, 
-                orderStatus: result, 
+                tags: result, 
                 showWaiting: false, 
                 showDialog: false
             })           
@@ -68,15 +68,20 @@ export default function OrderStatusList(){
     const columns = [
         { field: 'id', headerName: 'Cód.', width: 90 },
         {
-            field: 'sequence',
-            headerName: 'Sequência',
-            width: 90          
-          },  
-        {
           field: 'description',
           headerName: 'Descrição',
-          width: 250          
-        },        
+          width: 150          
+        },
+        {
+          field: 'color',
+          headerName: 'Cor',
+          width: 150          
+        },
+        {
+            field: 'type',
+            headerName: 'Tipo',
+            width: 150          
+        },
         {
             field: 'edit',
             headerName: 'Editar',
@@ -187,7 +192,7 @@ export default function OrderStatusList(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle title="Lista de status de pedidos" />
+            <PageTitle title="Listagem de tags" />
             <Box sx={{
                 display: "flex",
                 justifyContent: "right",
@@ -207,7 +212,7 @@ export default function OrderStatusList(){
             <Paper elevation={4} sx={{ height: 400, width: '100%' }}>
 
             <DataGrid
-                rows={orderStatus}
+                rows={tags}
                 columns={columns}
                 initialState={{
                 pagination: {

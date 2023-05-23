@@ -8,22 +8,26 @@ import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import Notification from "../../components/ui/Notification";
 import { useNavigate, useParams } from "react-router-dom";
-import PaymentMethod from "../../models/PaymentMethod";
+import User from "../../models/User";
 import getValidationMessages from "../../utils/getValidationMessages";
 
 
 
 
-export default function PaymentMethodForm(){
-    const API_PATH = '/payment_methods'
-
-    const navigate = useNavigate()
+export default function UserForm(){
+    const API_PATH = '/users'
     const params = useParams()
 
+    const navigate = useNavigate()
+
     const [state, setState] = React.useState({
-        paymentMethod: {
-          description: '',
-          operator_fee: ''
+        user: {
+          name: '',
+          email: '',
+          verified_email: false,
+          is_admin: false,
+          phone: '',
+          password: ''
         },
         errors: {},
         showWaiting: false,
@@ -35,16 +39,16 @@ export default function PaymentMethodForm(){
     })
 
     const {
-        paymentMethod,
+        user,
         errors,
         showWaiting,
         notif
     } = state
 
     function handleFormFieldChange(event) {
-        const paymentMethodCopy = {...paymentMethod}
-        paymentMethodCopy[event.target.name] = event.target.value
-        setState({...state, paymentMethod: paymentMethodCopy})
+        const userCopy = {...user}
+        userCopy[event.target.name] = event.target.value
+        setState({...state, user: userCopy})
     }
     function handleFormSubmit(event){
         
@@ -70,7 +74,7 @@ export default function PaymentMethodForm(){
         const result = await myfetch.get(`${API_PATH}/${params.id}`)
         setState({
           ...state,
-          paymentMethod: result,
+          user: result,
           showWaiting: false
         })
       }
@@ -87,20 +91,19 @@ export default function PaymentMethodForm(){
         })
       }
     }
-
     async function sendData() {
         console.log('sendData')
         setState({...state, showWaiting: true, errors:{}})
         try{
             //Chama a validação da biblioteca Joi
            
-            await PaymentMethod.validateAsync(paymentMethod, {abortEarly: false})
-            //Registro já existe: chama PUT para atualizar
-            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, paymentMethod)
-            // Registro não existe: chama POST para criar
-            else await myfetch.post(API_PATH, paymentMethod)
+            await User.validateAsync(user, {abortEarly: false})
             
-            //Dar Feedback positivo e voltar para a listagem            
+            //Registro já existe: chama PUT para atualizar
+            if(params.id) await myfetch.put(`${API_PATH}/${params.id}`, user)
+            // Registro não existe: chama POST para criar
+            else await myfetch.post(API_PATH, user)
+            //Dar Feedback positivo e voltar para a lisuserem            
             setState({...state, 
                 showWaiting: false,
                 notif: {
@@ -131,7 +134,7 @@ export default function PaymentMethodForm(){
         if (reason === 'clickaway') {
         return;
         }
-        // Se o item foi salvo com sucesso, retorna à página de listagem
+        // Se o item foi salvo com sucesso, retorna à página de lisuserem
         if(notif.severity === 'success') navigate(-1)
 
         setState({...state, notif: {...notif, show: false}});
@@ -155,35 +158,81 @@ export default function PaymentMethodForm(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle 
-            title={ params.id? "Editar método de pagamento" : "Cadastrar novo método de pagamento" }/>
+            <PageTitle title={params.id? "Editar usuário":"Cadastrar nova usuário"}/>
             
 
             <form onSubmit={handleFormSubmit}>
                 <TextField  
-                    label="Descrição" 
+                    label="Nome" 
                     variant="filled" 
-                    name="description" //Nome do campo da tabela
+                    name="name" //Nome do campo da tabela
                     fullWidth
                     required
-                    value={paymentMethod.description} // nome do campo da tabela
+                    value={user.name} // nome do campo da tabela
                     onChange={handleFormFieldChange}
-                    error={errors?.description}
-                    helperText={errors?.description}
+                    error={errors?.name}
+                    helperText={errors?.name}
                     
 
                 />
                 <TextField  
-                    label="Taxa da operação" 
-                    type="number"
+                    label="E-mail" 
                     fullWidth
                     required
                     variant="filled" 
-                    name="operator_fee" //Nome do campo da tabela
-                    value={paymentMethod.operator_fee} // nome do campo da tabela
+                    name="email" //Nome do campo da tabela
+                    value={user.email} // nome do campo da tabela
                     onChange={handleFormFieldChange}
-                    error={errors?.operator_fee}
-                    helperText={errors?.operator_fee}
+                    error={errors?.email}
+                    helperText={errors?.email}
+
+                />
+                <TextField  
+                    label="E-mail verificado" 
+                    fullWidth
+                    required
+                    variant="filled" 
+                    name="verified_email" //Nome do campo da tabela
+                    value={user.verified_email} // nome do campo da tabela
+                    onChange={handleFormFieldChange}
+                    error={errors?.verified_email}
+                    helperText={errors?.verified_email}
+
+                />
+                <TextField  
+                    label="Usuário administrador" 
+                    fullWidth
+                    required
+                    variant="filled" 
+                    name="is_admin" //Nome do campo da tabela
+                    value={user.is_admin} // nome do campo da tabela
+                    onChange={handleFormFieldChange}
+                    error={errors?.is_admin}
+                    helperText={errors?.is_admin}
+
+                />
+                <TextField  
+                    label="Telefone" 
+                    fullWidth
+                    required
+                    variant="filled" 
+                    name="phone" //Nome do campo da tabela
+                    value={user.phone} // nome do campo da tabela
+                    onChange={handleFormFieldChange}
+                    error={errors?.phone}
+                    helperText={errors?.phone}
+
+                />
+                <TextField  
+                    label="Password" 
+                    fullWidth
+                    required
+                    variant="filled" 
+                    name="password" //Nome do campo da tabela
+                    value={user.password} // nome do campo da tabela
+                    onChange={handleFormFieldChange}
+                    error={errors?.password}
+                    helperText={errors?.password}
 
                 />
                 <Fab 
@@ -200,4 +249,3 @@ export default function PaymentMethodForm(){
         </>
     )
 }
-

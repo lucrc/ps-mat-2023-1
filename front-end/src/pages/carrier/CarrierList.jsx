@@ -183,7 +183,7 @@ export default function CarrierList(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle title="Listagem de clientes" />
+            <PageTitle title="Listagem de meios de entrega" />
             <Box sx={{
                 display: "flex",
                 justifyContent: "right",

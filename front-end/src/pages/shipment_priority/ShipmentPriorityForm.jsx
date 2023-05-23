@@ -153,7 +153,7 @@ export default function ShipmentPriorityForm(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle title="Cadastrar novo método de pagamento" />
+            <PageTitle title={params.id? "Editar prioridade de entrega":"Cadastrar nova prioridade de entrega" }/>
             
 
             <form onSubmit={handleFormSubmit}>

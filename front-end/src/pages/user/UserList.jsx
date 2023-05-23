@@ -17,12 +17,12 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 
 
-export default function OrderStatusList(){
+export default function UserList(){
 
-    const API_PATH = '/order_statuses'
+    const API_PATH = '/users'
 
     const [state, setState] = React.useState({
-        orderStatus: [],
+        users: [],
         showWaiting: false,
         showDialog: false,
         deleteId: null,
@@ -33,7 +33,7 @@ export default function OrderStatusList(){
         }
     })
     const {
-        orderStatus,
+        users,
         showWaiting,
         showDialog,
         deleteId,
@@ -46,7 +46,7 @@ export default function OrderStatusList(){
             const result = await myfetch.get(API_PATH)            
             setState({
                 ... state, 
-                orderStatus: result, 
+                users: result, 
                 showWaiting: false, 
                 showDialog: false
             })           
@@ -66,17 +66,37 @@ export default function OrderStatusList(){
     }, [])
 
     const columns = [
-        { field: 'id', headerName: 'Cód.', width: 90 },
+        { field: 'id', headerName: 'Cód.', width: 50 },
         {
-            field: 'sequence',
-            headerName: 'Sequência',
-            width: 90          
-          },  
+          field: 'name',
+          headerName: 'Nome',
+          width: 150          
+        },
         {
-          field: 'description',
-          headerName: 'Descrição',
-          width: 250          
-        },        
+          field: 'email',
+          headerName: 'E-mail',
+          width: 200          
+        },
+        {
+            field: 'verified_email',
+            headerName: 'E-mail Verificado',
+            width: 150          
+        },
+        {
+            field: 'is_admin',
+            headerName: 'Usuário Administrador',
+            width: 200          
+        },
+        {
+            field: 'phone',
+            headerName: 'Telefone',
+            width: 150          
+        },
+        {
+            field: 'password',
+            headerName: 'Password',
+            width: 150          
+        },
         {
             field: 'edit',
             headerName: 'Editar',
@@ -187,7 +207,7 @@ export default function OrderStatusList(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle title="Lista de status de pedidos" />
+            <PageTitle title="Listagem de usuários" />
             <Box sx={{
                 display: "flex",
                 justifyContent: "right",
@@ -207,7 +227,7 @@ export default function OrderStatusList(){
             <Paper elevation={4} sx={{ height: 400, width: '100%' }}>
 
             <DataGrid
-                rows={orderStatus}
+                rows={users}
                 columns={columns}
                 initialState={{
                 pagination: {

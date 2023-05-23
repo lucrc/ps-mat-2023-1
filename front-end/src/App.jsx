@@ -15,6 +15,10 @@ import ShipmentPriorityList from './pages/shipment_priority/ShipmentPriorityList
 import ShipmentPriorityForm from './pages/shipment_priority/ShipmentPriorityForm'
 import OrderStatusList from './pages/order_status/OrderStatusList'
 import OrderStatusForm from './pages/order_status/OrderStatusForm'
+import TagList from './pages/tag/TagList'
+import TagForm from './pages/tag/TagForm'
+import UserList from './pages/user/UserList'
+import UserForm from './pages/user/UserForm'
 
 
 
@@ -98,6 +102,32 @@ function App() {
           <Route path="/order_status/:id" element=
           {<AuthGuard> <OrderStatusForm /> </AuthGuard>
           }/>
+
+          <Route path="/tag" element=
+          {<AuthGuard> <TagList /> </AuthGuard>          
+          }/>
+          
+          <Route path="/tag/new" element=
+          {<AuthGuard> <TagForm /> </AuthGuard>
+          }/>
+
+          <Route path="/tag/:id" element=
+          {<AuthGuard> <TagForm /> </AuthGuard>
+          }/>
+
+          <Route path="/user" element=
+          {<AuthGuard> <UserList /> </AuthGuard>          
+          }/>
+          
+          <Route path="/user/new" element=
+          {<AuthGuard> <UserForm /> </AuthGuard>
+          }/>
+
+          <Route path="/user/:id" element=
+          {<AuthGuard> <UserForm /> </AuthGuard>
+          }/>
+
+          
 
           
           
