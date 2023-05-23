@@ -53,6 +53,8 @@ export default function MainMenu() {
         <Divider />
         <MenuItem onClick={handleClose} component={Link} to="/shipment_priority">Prioridades de entrega</MenuItem>
         <Divider />
+        <MenuItem onClick={handleClose} component={Link} to="/order_status">Status de pedidos</MenuItem>
+        <Divider />
         <MenuItem onClick={handleClose} component={Link} to="/">Início</MenuItem>
       </Menu>
     </div>

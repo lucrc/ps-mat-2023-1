@@ -13,6 +13,8 @@ import CarrierList from './pages/carrier/CarrierList'
 import CarrierForm from './pages/carrier/CarrierForm'
 import ShipmentPriorityList from './pages/shipment_priority/ShipmentPriorityList'
 import ShipmentPriorityForm from './pages/shipment_priority/ShipmentPriorityForm'
+import OrderStatusList from './pages/order_status/OrderStatusList'
+import OrderStatusForm from './pages/order_status/OrderStatusForm'
 
 
 
@@ -83,6 +85,18 @@ function App() {
 
           <Route path="/shipment_priority/new" element=
           {<AuthGuard> <ShipmentPriorityForm /> </AuthGuard>
+          }/>
+
+          <Route path="/order_status" element=
+          {<AuthGuard> <OrderStatusList /> </AuthGuard>          
+          }/>
+          
+          <Route path="/order_status/new" element=
+          {<AuthGuard> <OrderStatusForm /> </AuthGuard>
+          }/>
+
+          <Route path="/order_status/:id" element=
+          {<AuthGuard> <OrderStatusForm /> </AuthGuard>
           }/>
 
           
