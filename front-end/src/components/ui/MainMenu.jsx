@@ -59,6 +59,8 @@ export default function MainMenu() {
         <Divider />
         <MenuItem onClick={handleClose} component={Link} to="/user">Usuarios</MenuItem>
         <Divider />
+        <MenuItem onClick={handleClose} component={Link} to="/city">Cidades</MenuItem>
+        <Divider />
 
 
         <MenuItem onClick={handleClose} component={Link} to="/">Início</MenuItem>

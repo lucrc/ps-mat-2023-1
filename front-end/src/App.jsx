@@ -137,8 +137,8 @@ function App() {
           {<AuthGuard> <CityForm /> </AuthGuard>
           }/>
 
-          <Route path="/carrier/:id" element=
-          {<AuthGuard> <CarrierForm /> </AuthGuard>
+          <Route path="/city/:id" element=
+          {<AuthGuard> <CityForm /> </AuthGuard>
           }/>
 
           
