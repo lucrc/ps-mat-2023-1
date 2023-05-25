@@ -16,11 +16,10 @@ const Tag = Joi.object({
     .required()
     .messages({'*': 'A cor deve ser informada (entre 2 e 8 caracteres)'}),
 
-    type: Joi.string()
-    .min(1) // Não aceira negativo
-    .max(1)
+    type: Joi.any()
+    .valid('C','O')    
     .required()
-    .messages({'*': 'O tipo deve ser informado (entre 2 e 8 caracteres)'})
+    .messages({'*': 'O tipo deve ser informado (entre "C" ou "O" em maiúsculo)'})
 
 })
 .options({allowUnknown: true})

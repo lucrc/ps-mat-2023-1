@@ -86,7 +86,7 @@ export default function UserForm(){
           notif:{
             severity: 'error',
             show: true,
-            message: 'EROO ' + error.message
+            message: 'ERRO ' + error.message
           }
         })
       }

@@ -81,7 +81,7 @@ export default function CarrierForm(){
           notif:{
             severity: 'error',
             show: true,
-            message: 'EROO ' + error.message
+            message: 'ERRO ' + error.message
           }
         })
       }
@@ -155,7 +155,7 @@ export default function CarrierForm(){
             </Notification>   
 
             <PageTitle 
-            title={ params.id? "Editar meio de entrega" : "Cadastrar novo meio de entrega" }/>
+            title={ params.id? "Editar transportadora" : "Cadastrar nova transportadora" }/>
             
 
             <form onSubmit={handleFormSubmit}>

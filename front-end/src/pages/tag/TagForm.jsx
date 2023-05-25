@@ -24,7 +24,7 @@ export default function TagForm(){
         tag: {
           description: '',
           color: '',
-          type: null
+          type: ''
         },
         errors: {},
         showWaiting: false,
@@ -83,7 +83,7 @@ export default function TagForm(){
           notif:{
             severity: 'error',
             show: true,
-            message: 'EROO ' + error.message
+            message: 'ERRO ' + error.message
           }
         })
       }

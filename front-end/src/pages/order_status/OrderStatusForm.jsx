@@ -82,7 +82,7 @@ export default function OrderStatusForm(){
           notif:{
             severity: 'error',
             show: true,
-            message: 'EROO ' + error.message
+            message: 'ERRO ' + error.message
           }
         })
       }

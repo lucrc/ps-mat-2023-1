@@ -19,6 +19,8 @@ import TagList from './pages/tag/TagList'
 import TagForm from './pages/tag/TagForm'
 import UserList from './pages/user/UserList'
 import UserForm from './pages/user/UserForm'
+import CityList from './pages/city/CityList'
+import CityForm from './pages/city/CityForm'
 
 
 
@@ -125,6 +127,18 @@ function App() {
 
           <Route path="/user/:id" element=
           {<AuthGuard> <UserForm /> </AuthGuard>
+          }/>
+
+          <Route path="/city" element=
+          {<AuthGuard> <CityList /> </AuthGuard>          
+          }/>
+          
+          <Route path="/city/new" element=
+          {<AuthGuard> <CityForm /> </AuthGuard>
+          }/>
+
+          <Route path="/carrier/:id" element=
+          {<AuthGuard> <CarrierForm /> </AuthGuard>
           }/>
 
           

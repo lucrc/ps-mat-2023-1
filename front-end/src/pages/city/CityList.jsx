@@ -17,12 +17,12 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 
 
-export default function CarrierList(){
+export default function CityList(){
 
-    const API_PATH = '/carriers'
+    const API_PATH = '/cities'
 
     const [state, setState] = React.useState({
-        carriers: [],
+        cities: [],
         showWaiting: false,
         showDialog: false,
         deleteId: null,
@@ -33,7 +33,7 @@ export default function CarrierList(){
         }
     })
     const {
-        carriers,
+        cities,
         showWaiting,
         showDialog,
         deleteId,
@@ -46,7 +46,7 @@ export default function CarrierList(){
             const result = await myfetch.get(API_PATH)            
             setState({
                 ... state, 
-                carriers: result, 
+                cities: result, 
                 showWaiting: false, 
                 showDialog: false
             })           
@@ -70,6 +70,12 @@ export default function CarrierList(){
         {
           field: 'name',
           headerName: 'Nome',
+          width: 150          
+        },
+        ,
+        {
+          field: 'state',
+          headerName: 'Estado',
           width: 150          
         },
         
@@ -183,7 +189,7 @@ export default function CarrierList(){
                     {notif.message}    
             </Notification>   
 
-            <PageTitle title="Listagem de transportadoras" />
+            <PageTitle title="Listagem de cidades" />
             <Box sx={{
                 display: "flex",
                 justifyContent: "right",
@@ -203,7 +209,7 @@ export default function CarrierList(){
             <Paper elevation={4} sx={{ height: 400, width: '100%' }}>
 
             <DataGrid
-                rows={carriers}
+                rows={cities}
                 columns={columns}
                 initialState={{
                 pagination: {
