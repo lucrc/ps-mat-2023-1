@@ -21,6 +21,7 @@ import UserList from './pages/user/UserList'
 import UserForm from './pages/user/UserForm'
 import CityList from './pages/city/CityList'
 import CityForm from './pages/city/CityForm'
+import React from 'react'
 
 
 
@@ -32,14 +33,20 @@ function AuthGuard ({children}){
 
 function App() {
   
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
+  function onLoginLogout(loggedIn){
+    setIsLoggedIn(loggedIn)
+  }
   return (
     
       <BrowserRouter>
-      <HeaderBar />
+      <HeaderBar  isLoggedIn={isLoggedIn} onLoginLogout={onLoginLogout}/>
       <Box sx={{m: '25px auto', p:'25px'}}>
         <Routes>
-        <Route path="/Login" element={<Login />}/> 
+        <Route path="/Login" element={
+        <Login onLoginLogout={onLoginLogout} />}
+        /> 
 
           <Route path="/" element=
           {<AuthGuard> <Home /> </AuthGuard>

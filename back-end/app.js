@@ -14,7 +14,10 @@ var app = express();
 //acessar o back-end
 
 const cors = require('cors')
-app.use(cors())
+app.use(cors({
+    origin: process.env.FRONT_ORIGIN,
+    credentials: true // Exige o envio de cookie com credenciais
+}))
 
 
 //Conexao ao BD -------------------------------------------------------------

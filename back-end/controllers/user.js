@@ -137,7 +137,15 @@ controller.login = async (req, res) =>{
             )
 
             //Retorna o token ~> HTTP 200: OK (implícito)
-            res.json({auth: true, token})
+            //res.json({auth: true, token})
+            res.cookie('AUTH', token,{
+                httpOnly: true,
+                secure: true,
+                sameSite: 'None',
+                path: '/',
+                maxAge: 24*60*60 // 24 horas
+            })
+            res.json({auth:true})
         }
         else{
             //Senha errada ~> HTTP 401: Unauthorized
@@ -147,5 +155,10 @@ controller.login = async (req, res) =>{
     catch(error){
         console.error(error)
     }
+}
+controller.logout =  (req, res) => {
+    res.clearCookie('AUTH') // APAGA O COOKIE
+    res.json({auth:false})
+    
 }
 module.exports = controller

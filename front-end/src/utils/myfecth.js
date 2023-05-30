@@ -1,9 +1,12 @@
 const myfetch = {} // Objeto vazio
+
 const baseUrl = 'http://localhost:3000'
+
 function defaultOptions(body = null, method = 'GET'){
     const options = {
         method,      
-        headers:{"Content-type": "application/json; charset=UTF-8"}
+        headers:{"Content-type": "application/json; charset=UTF-8"},
+        credentials: 'include'
     }
     if(body) options.body = JSON.stringify(body)
 

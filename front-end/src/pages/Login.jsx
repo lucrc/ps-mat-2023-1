@@ -11,7 +11,7 @@ import PageTitle from '../components/ui/PageTitle'
 
 
 
-export default function Login() {
+export default function Login({onLoginLogout}) {
     const[email, setEmail] = React.useState('')
     const[password, setPassword] = React.useState('')
     const[showWaiting, setShowWaiting] = React.useState(false)
@@ -42,6 +42,7 @@ export default function Login() {
                 severity: 'success'
             })
             
+            onLoginLogout(true)
         }
         catch(error){
             console.error(error)
