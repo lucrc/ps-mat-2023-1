@@ -23,17 +23,15 @@ import CityList from './pages/city/CityList'
 import CityForm from './pages/city/CityForm'
 import React from 'react'
 
-
-
-function AuthGuard ({children}){
-  // Estaremos autenticados se tivermos um token gravado no localStorage
-  if(window.localStorage.getItem('token')) return children
-  else return <Navigate to="/login" replace />
-}
-
 function App() {
   
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
+
+  function AuthGuard ({children}){
+    // Estaremos autenticados se tivermos um token gravado no localStorage
+    if(isLoggedIn) return children
+    else return <Navigate to="/login" replace />
+  }
 
   function onLoginLogout(loggedIn){
     setIsLoggedIn(loggedIn)
