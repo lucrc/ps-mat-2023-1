@@ -143,7 +143,7 @@ controller.login = async (req, res) =>{
                 secure: true,
                 sameSite: 'None',
                 path: '/',
-                maxAge: 86400 // 24 horas
+                maxAge: 24*60*60 // 24 horas
             })
             res.json({auth:true})
         }
