@@ -17,7 +17,7 @@ function defaultOptions(body = null, method = 'GET'){
     const token = window.localStorage.getItem('token')
 
     if(token) options.headers.Authentication = `Bearer ${token}`
-    console.log(options)
+    
     
     return options
 }
@@ -31,13 +31,13 @@ function getErrorDescription(response){
 }
 myfetch.post = async function(path, body){
     const response = await fetch(baseUrl + path, defaultOptions(body, 'POST'))
-    console.log(body)
+    //console.log(body)
     if(response.ok) return true
     else throw new Error(getErrorDescription(response))
 }
 myfetch.get = async function(path){
     const response = await fetch(baseUrl + path, defaultOptions())
-    console.log(response)
+    //console.log(response)
     
     if(response.ok) return  response.json()
     
@@ -45,7 +45,7 @@ myfetch.get = async function(path){
 }
 myfetch.delete = async function(path){
     const response = await fetch(baseUrl + path, defaultOptions(null, 'DELETE'))
-    console.log(response)
+    //console.log(response)
     
     if(response.ok) return  true //não retorna json()
     
@@ -53,7 +53,7 @@ myfetch.delete = async function(path){
 }
 myfetch.put = async function(path, body){
     const response = await fetch(baseUrl + path, defaultOptions(body, 'PUT'))
-    console.log(body)
+    //console.log(body)
     if(response.ok) return true
     else throw new Error(getErrorDescription(response))
 }
